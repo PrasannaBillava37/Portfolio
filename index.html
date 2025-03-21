@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prasanna Billava - Portfolio</title>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #1abc9c;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+       /* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .card img {
+        height: 220px;
+    }
+
+    .hero img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #2c3e50;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 80px 1.5rem;
+    }
+
+    .hero img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-content p {
+        font-size: 0.8rem;
+    }
+
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero-content p {
+        font-size: 0.7rem;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .card p {
+        font-size: 0.8rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+}
+
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 2rem;
+            background-color: #1abc9c;
+            color: #fff;
+            gap: 2rem;
+            min-height: 70vh;
+        }
+
+        .hero img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .hero img:hover {
+            transform: scale(1.1);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            text-align:centre;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* Cards Styling */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Form Styling */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #1abc9c;
+        }
+
+        .contact-form button {
+            background-color: #1abc9c;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #16a085;
+        }
+
+        /* Footer Styling */
+        footer {
+    padding: 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    margin: 0 10px; /* Proper spacing between icons */
+    display: inline-block;
+}
+
+footer img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle; /* Align icons with text */
+}
+
+footer span {
+    margin: 0 10px;
+    color: white; /* Keep the separators visible */
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Prasanna</div>
+    <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#certificates">My Certificates</a></li>
+        <li><a href="#projects">My Projects</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+    </ul>
+    <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section id="about" class="hero">
+    <img src="./DSC_1069-Photoroom-Photoroom.png" alt="Profile Picture" />
+    <div class="hero-content">
+        <h1>Prasanna Billava</h1>
+        <p>Intermediate Web Developer | Intermediate WordPress & Webflow </p>
+        <br>
+        <p>Hi, I'm Prasanna Billava — a passionate web developer specializing in WordPress and Webflow. 
+        I create responsive, user-friendly websites with a focus on clean design and seamless functionality. 
+        With hands-on experience in building and managing websites, I strive to deliver exceptional user experiences through modern design and smart development.</p>
+    </div>
+</section>
+
+<!-- Certificates Section -->
+<section id="certificates">
+    <h2>My Certificates</h2>
+    <div class="cards">
+        <!-- 4 Cards -->
+        <div class="card">
+            <a href="./Webflow 101.pdf"><img src="Certificate.jpg" alt="Certificate"></a>
+            <div class="card-content">
+                <h3>Webflow 101 certificate</h3>
+                <p>certificate Recived for completing Exam After Finishing Webflow 101</p>
+            </div>
+        </div>
+        <div class="card">
+           <a href="./CMS.pdf"><img src="Certificate.jpg" alt="Certificate"></a>
+            <div class="card-content">
+                <h3>CMS certificate</h3>
+                <p>certificate Recived for completing Exam After Finishing Webflow CMS </p>
+            </div>
+        </div>
+        <div class="card">
+            <a href="./Layout 1.pdf"><img src="Certificate.jpg" alt="Certificate"></a>
+            <div class="card-content">
+                <h3>Layout Level 01 certificate</h3>
+                <p>certificate Recived for completing Exam After Finishing Webflow Layout simple layouts  level 01</p>
+            </div>
+        </div>
+        <div class="card">
+            <a href="./Layout 2.pdf"><img src="Certificate.jpg" alt="Certificate"></a>
+            <div class="card-content">
+                <h3>Layout Level 02 certificate</h3>
+                <p>certificate Recived for completing Exam After Finishing little bit advanced  layouts level 02</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2>My Projects</h2>
+    <div class="cards">
+        <!-- 3 Cards -->
+        <div class="card">
+            <a href="http://13.126.217.218/"><img src="./web-design-3411373_640.jpg" alt="Project"></a>
+            <div class="card-content">
+                <h3>Wordpress Project</h3>
+                <p>I am Configured Fully Functional Ecommerce website Using Wordpress</p>
+            </div>
+        </div>
+        <div class="card">
+            <a href="https://online-course-landing-page-61a546.webflow.io/"><img src="./web-design-3411373_640.jpg" alt="Project"></a>
+            <div class="card-content">
+                <h3>Webflow Project 01</h3>
+                <p>Created a Online Course Simple webpage with basic animation and responsive acroos Every Device.</p>
+            </div>
+        </div>
+        <div class="card">
+            <a href="https://saas-company-landing-page.webflow.io/"><img src="./web-design-3411373_640.jpg" alt="Project"></a>
+            <div class="card-content">
+                <h3>Webflow Project 02</h3>
+                <p>Created a Saas Company Simple webpages with basic animation and responsive acroos Every Device.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+    <section id="contact">
+    <h2>Let's talk!</h2>
+   <h3 style="color: #333; font-size: 16px; cursor: pointer; transition: color 0.3s ease; padding-bottom:10px;" 
+   onmouseover="this.style.color='#007BFF'" 
+   onmouseout="this.style.color='#333'" 
+   onclick="window.location.href='mailto:prasannathedev@gmail.com'">
+    Drop me a mail or fill the form.
+</h3>
+
+    <form class="contact-form" action="https://getform.io/f/ajjmqjja" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email"   name="email" placeholder="Your Email" required />
+        <textarea id="message"  placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    © 2025 Prasanna Billava
+    <br>
+    <a href="https://www.instagram.com/prasanna_billava/" target="_blank">
+    <img src="./instagram-1-svgrepo-com.svg" alt="Instagram" width="24" height="24">
+</a> |
+
+<a href="mailto:prasannathedev@gmail.com">
+    <img src="./gmail-svgrepo-com.svg" alt="Email" width="24" height="24">
+</a> |
+
+<a href="https://www.linkedin.com/in/prasanna-billava-342a9b202/" target="_blank">
+    <img src="./linkedin-svgrepo-com.svg" alt="LinkedIn" width="24" height="24">
+</a>
+
+</footer>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    // Form submission with delayed redirection
+     document.getElementById("contactForm").addEventListener("submit", function(event) {
+        // Allow form to submit to action URL
+        setTimeout(() => {
+            window.location.href = "Formdata.html"; // Redirect after submission
+        }, 2000); // Delay redirection to ensure form submission
+    });
+</script>
+
+</body>
+</html>
